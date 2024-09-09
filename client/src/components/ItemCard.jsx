@@ -1,13 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { products } from '../content/productlist'
+import {useDispatch} from 'react-redux'
+import { setExactProduct } from '../features/exactProductSlice'
 
 const ItemCard = (product) => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const handleClick = () =>{
+    dispatch(setExactProduct(product))
+    console.log(product.id)
+
+    navigate(`/product/${product.id}`);
+
+  }
   return (
       <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-72 my-4 ">
-        <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-56">
+        <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-56 cursor-pointer" onClick={handleClick}>
           <img
-            // src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80"
             src={product.img}
             alt="card-image" className="object-cover w-full h-full animation transition ease-in-out duration-300 hover:scale-110" />
         </div>
@@ -21,7 +32,7 @@ const ItemCard = (product) => {
             </p>
           </div>
           <p className="block font-sans text-xs antialiased font-normal leading-normal text-gray-700 opacity-75">
-            {product.detail}
+            {product.description}
           </p>
         </div>
         <div className="p-6 pt-0">
@@ -33,7 +44,6 @@ const ItemCard = (product) => {
           </Link>
         </div>
       </div>
-
   )
 }
 
