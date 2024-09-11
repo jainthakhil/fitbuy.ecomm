@@ -10,6 +10,7 @@ import SignUp from './components/SignUp';
 import ProductDetail from './components/ProductDetail';
 import MenCarousel from './components/MenCarousel';
 import WomenCarousel from './components/WomenCarousel';
+import Cart from './components/Cart';
 import { useSelector } from 'react-redux'
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path='/men' element={<MenCarousel/>}/>
           <Route path='/women' element={<WomenCarousel/>}/>
           <Route path='/featured' element={<Home />}/>
+          <Route path='/cart' element={<Cart/>}/>
 
         </Routes>
         <Footer/>

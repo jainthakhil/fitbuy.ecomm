@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axiosInstance from '../axiosInstance'
 import {useDispatch} from 'react-redux'
-import { setUserName, setUserEmail } from '../features/loginSlice'
+import { setUserName, setUserEmail } from '../redux/features/loginSlice'
 
 const Login = () => {
     const navigate = useNavigate()

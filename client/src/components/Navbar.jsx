@@ -4,10 +4,11 @@ import logo from '../assets/images/logo.png'
 import cartImg from '../assets/images/cart.png'
 import userImg from '../assets/images/akkii4.jpg'
 import brandImg from '../assets/images/brandimg.jpg'
+import { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
-  var cartItemNo = 12;
+  var cartItemNo = useSelector((state) => state.cart.itemsInCart)
   return (
     <nav className="wrapper w-full h-16 flex flex-row items-center justify-between bg-[#E4E4E4] text-white z-10 ">
       

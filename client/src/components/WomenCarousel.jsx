@@ -22,7 +22,7 @@ const WomenCarousel = () => {
 
   return (
     <div className=' w-full p-6'>
-      <h1 className='uppercase font-bold text-2xl mt-8 mb-4 text-gray-600 text-center'>Men</h1>
+      <h1 className='uppercase font-bold text-2xl mt-8 mb-4 text-gray-600 text-center'>Women</h1>
       <div className="wrapper flex flex-wrap items-center justify-evenly">
         {womenData.map((product) => (
           <ItemCard

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ItemCard from '../ItemCard'
 import { products } from '../../content/productlist'
 import axiosInstance from '../../axiosInstance'
+import { useSelector } from 'react-redux'
 
 const Carousel = () => {
   const [data, setData] = useState([]);
@@ -20,6 +21,7 @@ const Carousel = () => {
     fetchFeaturedProducts();
 
   }, [])
+  console.log()
 
 
   return (
@@ -33,6 +35,8 @@ const Carousel = () => {
             img={product.imageUrl}
             name={product.name}
             price={product.price}
+            color={product.color}
+            size={product.size}
             description={product.description}
           />
         ))}
