@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axiosInstance from '../axiosInstance';
 
-
 const SignUp = () => {
     const navigate = useNavigate();
     const [newUserData, setNewUserData] = useState({
@@ -34,7 +33,7 @@ const SignUp = () => {
     return (
         <div className='w-full h-full flex items-center justify-center'>
             <div className="relative flex flex-col text-gray-700 bg-transparent shadow-none rounded-xl border border-slate-200">
-                <div className="relative m-2.5 items-center flex justify-center text-white h-24 rounded-md bg-slate-800">
+                <div className="relative m-2.5 items-center flex justify-center text-white h-24 rounded-md bg-brandColor">
                     <h3 className="text-2xl">
                         Sign Up
                     </h3>
@@ -106,7 +105,7 @@ const SignUp = () => {
                         </label>
                     </div>
                     <button
-                        className="mt-6 block w-full select-none rounded-lg bg-gray-900 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        className="mt-6 block w-full select-none rounded-lg bg-brandColor py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="submit">
                         sign up
                     </button>

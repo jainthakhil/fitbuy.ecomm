@@ -3,8 +3,8 @@ import React from 'react'
 const Footer = () => {
     return (
 
-        <footer className="relative w-[98.5%] bg-gray-100 p-12 m-[0.75%] rounded-lg">
-            <div className="w-full px-8 mx-auto max-w-7xl">
+        <footer className="relative w-full bg-gray-100 p-12 ">
+            <div className="w-full mx-auto max-w-7xl">
                 <div className="grid justify-between grid-cols-1 gap-4 md:grid-cols-3">
                     <h5 className="block col-span-1 mb-6 font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-inherit text-left text-brandColor">
                         fitbuy.in

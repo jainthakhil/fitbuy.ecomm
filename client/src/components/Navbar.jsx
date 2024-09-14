@@ -1,16 +1,16 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import logo from '../assets/images/logo.png'
+import logo from '../assets/images/user.png'
 import cartImg from '../assets/images/cart.png'
-import userImg from '../assets/images/akkii4.jpg'
 import brandImg from '../assets/images/brandimg.jpg'
 import { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
-  var cartItemNo = useSelector((state) => state.cart.itemsInCart)
+  var cartItemNum = useSelector((state) => state.cart.items)
+  var cartItemNo = cartItemNum.length 
   return (
-    <nav className="wrapper w-full h-16 flex flex-row items-center justify-between bg-[#E4E4E4] text-white z-10 ">
+    <nav className="wrapper w-full h-16 flex flex-row items-center justify-between bg-[#E4E4E4]">
       
       <div className="link-box w-[40%] h-full flex justify-between">
         <ul className='w-auto h-full flex items-center justify-end text-sm md:text-base text-gray-600'>
@@ -53,49 +53,20 @@ const Navbar = () => {
               className=' w-full animation transition ease-in-out duration-300 hover:scale-105  relative'
             >
               <img src={cartImg} alt="" className='w-3/4' />
-              <span className='absolute pt-2 text-sm font-bold text-white '>{cartItemNo>9 ? cartItemNo = '9+' : cartItemNo = cartItemNo}</span>
+              <span className='h-5 w-5 absolute top-3 right-0 text-sm font-normal text-white bg-[#545454] flex items-center justify-center rounded-full'>{cartItemNo>9 ? cartItemNo = '9+' : cartItemNo = cartItemNo}</span>
             </NavLink>
           </li>
-
-          {/* <li className="nav-link h-full mx-2 md:mx-4 ">
-            <NavLink 
-              to="/signin"            
-              className='animation transition ease-in-out duration-300 hover:-translate-y-0.5 hover:scale-105 '
-            >
-              Login
-            </NavLink>
-          </li>
-
-          <li className="nav-link h-full mx-2 md:mx-4 ">
-            <NavLink 
-              to="/signup"            
-              className='animation transition ease-in-out duration-300 hover:-translate-y-0.5 hover:scale-105 '
-            >
-              Signup
-            </NavLink>
-          </li> */}
 
           <li className="nav-link h-full mx-2 md:mx-4 ">
             <details className="relative text-brandColor h-full animation transition ease-in-out duration-300 hover:scale-110">
-              <summary className="cursor-pointer h-full w-12 flex items-center justify-center "><img src={userImg} alt="" className='w-3/4 rounded-full' /></summary>
+              <summary className="cursor-pointer h-full w-12 flex items-center justify-center "><img src={logo} alt="" className='w-3/5 ' /></summary>
               <ul className="absolute right-0 mt-2 bg-white shadow-md rounded-lg p-2 text-black w-max">
                 <li className="py-1 px-3 hover:bg-gray-100"><Link to="/signin">Sign In</Link></li>
                 <li className="py-1 px-3 hover:bg-gray-100"><Link to="/signup">Sign Up</Link></li>
                 <li className="py-1 px-3 hover:bg-gray-100"><Link to="/logout">Logout</Link></li>
               </ul>
             </details>
-
           </li>
-          
-
-          {/* <li className="nav-link h-full w-8 md:w-10 mx-2 md:mx-4 ">
-            <NavLink 
-              to="/user" 
-              className=' w-full animation transition ease-in-out duration-300 hover:scale-110 '         
-            >
-              <img src={userImg} alt="" className='w-3/4 rounded-full'/>
-            </NavLink>
-          </li> */}
         </ul>
       </div>
     </nav>

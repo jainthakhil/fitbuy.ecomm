@@ -8,43 +8,59 @@ import { products } from '../content/productlist'
 const Cart = () => {
   const cart = useSelector((state) => state.cart.items)
   cart.map((item) => {
-    console.log(item);
+    // console.log(item);
   })
   return (
 
-    <div className="cartbox bg-[#005f73] text-white">
+    <div className="cartbox text-[#545454] font-medium p-12">
+      <h1 className='text-[2rem] font-bold mb-6'>
+        Cart
+      </h1>
 
-      <div className="cart w-full h-full grid grid-cols-1 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12  ">
+      <form action="" method=''>
+        <div className="cart-header w-full py-4 flex items-center justify-between">
 
-        {/* Left side (3/4 width) with a single column */}
-        <div className="col-span-1 sm:col-span-4 md:col-span-6 lg:col-span-8 flex flex-col gap-6 p-4 h-dvh overflow-y-scroll custom-scrollbar ">
-          <h1 className='text-lg font-bold'>Shopping Cart</h1>
-          {cart.map((product, index) => (
-            <div key={product.id}>
-              <CartCard
-                id={product.id}
-                img={product.imageUrl}
-                name={product.name}
-                price={product.price}
-                color={product.color}
-                size={product.size}
-                description={product.description}
-              />
-              {/* Render <hr> after each CartCard except the last one */}
-              {index < cart.length - 1 && <hr className="my-4 border-t border-slate-400" />}
+          <div className="detail w-1/2 h-full flex items-center">
+            <div className="product">
+              Product
             </div>
-          ))}
-          <hr className="my-4 border-t border-gray-300" />
+          </div>
+          <div className="quant w-1/2 h-full flex items-center justify-between">
+            <div className="product w-1/3">
+              Price
+            </div>
+            <div className="product w-1/2">
+              Quantity
+            </div>
+            <div className="product flex-grow flex justify-end">
+              Total
+            </div>
+          </div>
+        </div>
+        <hr className="mb-6 border-t" />
+        <div className="cart-items w-full h-full  ">
+        {cart.map((product, index) => (        
+          <div key={product.id}>
+            <CartCard
+              id={product.id}
+              img={product.imageUrl}
+              name={product.name}
+              price={product.price}
+              color={product.color}
+              size={product.size}
+              description={product.description}
+              totalArticle={1}
+            />
+            {index < cart.length - 1 && <hr className="my-4 border-t " />}
+          </div> 
+        ))}
+       
+
         </div>
 
-        {/* Right side (1/4 width) */}
-        <div className="h-full flex flex-col summary col-span-1 sm:col-span-2 md:col-span-2 lg:col-span-4 p-4  ">
-        <h3 className='font-bold w-full text-left text-lg'>Summary</h3>
-          <CartSummary />
-        </div>
-
-
-
+      </form>
+      <div className="summary w-full flex items-center justify-end">
+        <CartSummary />
       </div>
     </div>
 

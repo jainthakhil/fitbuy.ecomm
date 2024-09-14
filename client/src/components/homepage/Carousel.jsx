@@ -13,7 +13,7 @@ const Carousel = () => {
       try {
         const response = await axiosInstance.get('/');
         setData(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (err) {
         setError(err.message || 'An error occurred')
       }
@@ -21,7 +21,7 @@ const Carousel = () => {
     fetchFeaturedProducts();
 
   }, [])
-  console.log()
+  // console.log(data)
 
 
   return (
@@ -32,7 +32,7 @@ const Carousel = () => {
           <ItemCard
             key={product._id}
             id={product._id}
-            img={product.imageUrl}
+            imageUrl={product.imageUrl}
             name={product.name}
             price={product.price}
             color={product.color}

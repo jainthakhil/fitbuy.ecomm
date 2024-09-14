@@ -21,33 +21,25 @@ const Login = () => {
     const handleSubmit = async (e)=>{
         e.preventDefault();
         console.log(userData);
-       
         try{
             const response = await axiosInstance.post('/signin', userData);
             setSuccess(response.data.message);
             setError(null);
             console.log(response.data.message);
             setUserData({email:'', password:''})
-
             dispatch(setUserName(response.data.loggedInUserName)) //sending username to the store
             dispatch(setUserEmail(userData.email)) //sending user email to the store
-
             navigate('/')
-
         } catch(err){
             setError(err.response?.data?.error );
             console.log(err.response?.data?.error);
             setSuccess(null);
-
         }
-
     }
-
-
     return (
         <div className="loginpage w-full h-full flex items-center justify-center">
             <div className="relative flex flex-col text-gray-700 bg-transparent shadow-none rounded-xl border border-slate-200">
-                <div className="relative m-2.5 items-center flex justify-center text-white h-24 rounded-md bg-slate-800">
+                <div className="relative m-2.5 items-center flex justify-center text-white h-24 rounded-md bg-brandColor">
                     <h3 className="text-2xl">
                         Sign In
                     </h3>
@@ -85,7 +77,7 @@ const Login = () => {
 
                     <button
                        
-                        className="mt-6 block w-full select-none rounded-lg bg-gray-900 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        className="mt-6 block w-full select-none rounded-lg bg-brandColor py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="submit">
                         Sign In
                     </button>

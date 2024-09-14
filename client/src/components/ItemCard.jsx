@@ -3,33 +3,34 @@ import { Link, useNavigate } from 'react-router-dom'
 import { products } from '../content/productlist'
 import {useDispatch, useSelector} from 'react-redux'
 import { setExactProduct } from '../redux/features/exactProductSlice'
-import {addItem, increaseItemsInCart} from '../redux/features/cartSlice'
+import {addItem, increaseItemsInCart, increaseTotalPrice} from '../redux/features/cartSlice'
 
 const ItemCard = (product) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const number = useSelector((state)=>state.cart.itemsInCart)
   
-  console.log(number);
+  // console.log(number);
   // const {id, img, name, price, description} = product;
   const handleClick = () =>{
     dispatch(setExactProduct(product))
-    console.log(product.id)
+    console.log(product)
     navigate(`/product/${product.id}`);
   }
 
   const handleAddToCart = () =>{
     console.log('add to cart clicked') 
-    dispatch(addItem({ name: product.name, id: product.id, price: product.price, imageUrl: product.img, description: product.description, size: product.size, color:product.color}));
-    dispatch(increaseItemsInCart())
-    console.log("itemcard details: ",product)
+    dispatch(increaseTotalPrice({price:product.price}))
+    dispatch(addItem({ name: product.name, id: product.id, price: product.price, imageUrl: product.imageUrl, description: product.description, size: product.size, color:product.color, totalArticle:1}));
+    // dispatch(increaseItemsInCart())
+    console.log("itemcard details: ",product.totalArticle)
   }
 
   return (
       <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-72 my-4 ">
         <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-56 cursor-pointer" onClick={handleClick}>
           <img
-            src={product.img}
+            src={product.imageUrl}
             alt="card-image" className="object-cover w-full h-full animation transition ease-in-out duration-300 hover:scale-110" />
         </div>
         <div className="p-6">

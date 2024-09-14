@@ -10,7 +10,7 @@ const WomenCarousel = () => {
           try {
             const response = await axiosInstance.get('/women');
             setWomenData(response.data);
-            console.log(response.data);
+            // console.log(response.data);
           } catch (err) {
             setError(err.message || 'An error occurred')
           }
@@ -21,16 +21,18 @@ const WomenCarousel = () => {
     
 
   return (
-    <div className=' w-full p-6'>
-      <h1 className='uppercase font-bold text-2xl mt-8 mb-4 text-gray-600 text-center'>Women</h1>
+    <div className=' w-full p-12'>
+      <h1 className='uppercase font-medium text-2xl mt-8 mb-4 text-gray-600 text-center'>Women</h1>
       <div className="wrapper flex flex-wrap items-center justify-evenly">
         {womenData.map((product) => (
           <ItemCard
             key={product._id}
             id={product._id}
-            img={product.imageUrl}
+            imageUrl={product.imageUrl}
             name={product.name}
             price={product.price}
+            color={product.color}
+            size={product.size}
             description={product.description}
           />
         ))}

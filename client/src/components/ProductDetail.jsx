@@ -1,21 +1,41 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import axiosInstance from '../axiosInstance';
-const color = 'Blue'
-const size = 'xl'
+import { useDispatch } from 'react-redux';
+import { addItem, increaseItemsInCart } from '../redux/features/cartSlice';
 
 
 const ProductDetail = () => {
     const {id} = useParams()
+    const dispatch = useDispatch()
     const [product, setProduct] = useState([]);
+
     useEffect(() => {
         // Fetch product details from the backend
-        axiosInstance.get(`/products/${id}`)
-            .then(response => setProduct(response.data))
-            .catch(error => console.error('Error fetching product details:', error));
-            console.log(product)
-    }, [id]);
+        const fetchProduct = async () => {
+          try {
+            const response = await axiosInstance.get(`/products/${id}`);
+            setProduct(response.data);
+            console.log(response.data);
+            
+          } catch (error) {
+            console.error('Error fetching product details:', error);
+          }
+        };
+    
+        fetchProduct();
+      }, [id]);
 
+      const handleAddToCart = (e) =>{
+        e.preventDefault()
+        console.log('add to cart clicked') 
+        dispatch(addItem({ name: product.name, id: product.id, price: product.price, imageUrl: product.img, description: product.description, size: product.size, color:product.color}));
+        dispatch(increaseItemsInCart())
+        console.log("itemcard details: ",product)
+      }
+
+
+   
 
     return (
         <div className="w-full flex items-center justify-center">
@@ -44,7 +64,7 @@ const ProductDetail = () => {
                         <div className="cart-form my-4">
                             <form action="">
                                 <input type="hidden" name="" />
-                                <button className='bg-brandColor text-white p-2 px-4 rounded-lg uppercase font-bold '>Add To Cart</button>
+                                <button onClick={handleAddToCart} className='bg-brandColor text-white p-2 px-4 rounded-lg uppercase font-bold ' >Add To Cart</button>
                             </form>
                         </div>
 
