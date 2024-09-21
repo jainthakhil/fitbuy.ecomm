@@ -1,33 +1,25 @@
-import React, { useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { products } from '../content/productlist'
-import {useDispatch, useSelector} from 'react-redux'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch} from 'react-redux'
 import { setExactProduct } from '../redux/features/exactProductSlice'
-import {addItem, increaseItemsInCart, increaseTotalPrice} from '../redux/features/cartSlice'
+import {addItem, increaseTotalPrice} from '../redux/features/cartSlice'
 
 const ItemCard = (product) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const number = useSelector((state)=>state.cart.itemsInCart)
-  
-  // console.log(number);
-  // const {id, img, name, price, description} = product;
   const handleClick = () =>{
     dispatch(setExactProduct(product))
-    console.log(product)
     navigate(`/product/${product.id}`);
   }
 
   const handleAddToCart = () =>{
     console.log('add to cart clicked') 
     dispatch(increaseTotalPrice({price:product.price}))
-    dispatch(addItem({ name: product.name, id: product.id, price: product.price, imageUrl: product.imageUrl, description: product.description, size: product.size, color:product.color, totalArticle:1}));
-    // dispatch(increaseItemsInCart())
-    console.log("itemcard details: ",product.totalArticle)
+    dispatch(addItem(product))
   }
 
   return (
-      <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-72 my-4 ">
+      <div className=" item__card relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-72 my-4 ">
         <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-56 cursor-pointer" onClick={handleClick}>
           <img
             src={product.imageUrl}

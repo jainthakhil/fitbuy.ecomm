@@ -1,11 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { products } from "../../content/productlist";
 
 const initialState = {
-    id:'',
-    img:'',
-    name:'',
-    price:'',
-    description:''
+   product:{},
 }
 
 export const exactSlice = createSlice({
@@ -13,12 +10,9 @@ export const exactSlice = createSlice({
     initialState,
     reducers:{
         setExactProduct:(state, action)=>{
-            state.id = action.payload.id;
-            state.name = action.payload.name;
-            state.img = action.payload.img;
-            state.price = action.payload.price;
-            state.description = action.payload.description;
-        }
+            state.product = {...state.product, ...action.payload}
+            console.log(state.product)
+        },
     }
 })
 

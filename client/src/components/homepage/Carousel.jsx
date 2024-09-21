@@ -13,15 +13,13 @@ const Carousel = () => {
       try {
         const response = await axiosInstance.get('/');
         setData(response.data);
-        // console.log(response.data);
       } catch (err) {
         setError(err.message || 'An error occurred')
       }
     }
     fetchFeaturedProducts();
-
   }, [])
-  // console.log(data)
+
 
 
   return (

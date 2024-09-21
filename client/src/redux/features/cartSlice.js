@@ -1,50 +1,90 @@
-import {createSlice} from '@reduxjs/toolkit'
-
+import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
-    items:[],
-    itemsInCart:0,
-    totalPrice:0,
+  items: [],
+  itemsInCart: 0,
+  totalPrice: 0,
+  actualCart: [],
 }
 
 
 const cartSlice = createSlice({
-    name: "cart",
-   initialState,
-    reducers:{
-        addItem: (state, action) => {
-          // state.items.push(action.payload);
-            // Check if the item already exists in the cart
-            const exists = state.items.find(item => item.id === action.payload.id);
-            // Only add the item if it's not already in the cart
-            if(exists){
-              exists.numberOfProduct += 1;
-            }
-            else {
-              // If it doesn't exist, add it to the cart with quantity 1
-              state.items.push(action.payload)
-           
-            }
-          },
-          removeItem: (state, action) => {
-            state.items = state.items.filter(item => item.id !== action.payload.id);
-            console.log('remove item slice')
-          },
-          increaseItemsInCart: (state, action)=>{
-            state.itemsInCart +=1;
-            console.log(state.items.length)
-          },
-          decreaseItemsInCart: (state, action)=>{
-            state.itemsInCart -=1;
-          },
-          increaseTotalPrice: (state, action)=>{
-            state.totalPrice += action.payload.price
-          },
-          decreaseTotalPrice: (state, action)=>{
-            state.totalPrice -= action.payload.price
-          }
+  name: "cart",
+  initialState,
+  reducers: {
+    addItem: (state, action) => {
+      const existingItem = state.items.find(item => 
+        item.id === action.payload.id &&
+        item.color === action.payload.color &&
+        item.size === action.payload.size &&
+        item.name === action.payload.name
+      );
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        state.items.push({ ...action.payload, quantity: 1 });
+      }
+      state.actualCart.push(action.payload)
+      const total = state.itemsInCart += 1
+        console.log(total);
+      
+    },
+    removeItem: (state, action) => {
+      console.log("remover reducer used")
+      const existingItem = state.items.find(item => 
+        item.id === action.payload.id &&
+        item.color === action.payload.color &&
+        item.size === action.payload.size &&
+        item.name === action.payload.name
+      );
+      if (existingItem) {
+        if (existingItem.quantity > 1) {
+          existingItem.quantity -= 1;
+        } else {
+          state.items = state.items.filter(item => 
+            !(item.id === action.payload.id &&
+              item.color === action.payload.color &&
+              item.size === action.payload.size &&
+              item.name === action.payload.name)
+          );
+        }
+        state.actualCart = state.actualCart.filter(item => 
+          !(item.id === action.payload.id &&
+            item.color === action.payload.color &&
+            item.size === action.payload.size &&
+            item.name === action.payload.name))
+        const total = state.itemsInCart -= 1
+      }
+    },
+    increaseItemsInCart: (state, action) => {
+      state.itemsInCart += 1;
+      console.log(state.items.length)
+    },
+    decreaseItemsInCart: (state, action) => {
+      state.itemsInCart -= 1;
+    },
+    increaseTotalPrice: (state, action) => {
+      state.totalPrice += action.payload.price
+    },
+    decreaseTotalPrice: (state, action) => {
+      state.totalPrice -= action.payload.price
+    },
 
-        },
+    removeSingleItem: (state, action) => {
+      const { id, color, size } = action.payload;
+
+      // Find the index of the first occurrence of the item
+      const indexToRemove = state.actualCart.findIndex(
+        (item) => item.id === id && item.color === color && item.size === size
+      );
+
+      // Remove only one instance of the item
+      if (indexToRemove !== -1) {
+        state.actualCart.splice(indexToRemove, 1);
+      }
+    },
+
+  },
 });
 
-export const {addItem, removeItem, increaseItemsInCart, decreaseItemsInCart, increaseTotalPrice, decreaseTotalPrice} = cartSlice.actions;
+export const { addItem, removeItem, increaseItemsInCart, decreaseItemsInCart, increaseTotalPrice, decreaseTotalPrice, removeSingleItem } = cartSlice.actions;
 export default cartSlice.reducer;

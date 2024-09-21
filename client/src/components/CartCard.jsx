@@ -1,49 +1,27 @@
-import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { removeItem, decreaseItemsInCart, increaseItemsInCart, addItem, increaseTotalPrice, decreaseTotalPrice } from '../redux/features/cartSlice'
+import React from 'react'
+import { useDispatch } from 'react-redux'
+import { removeItem, addItem, removeSingleItem } from '../redux/features/cartSlice'
 import deleteIcon from '../assets/images/deleteicon.png'
 
 
 const CartCard = (product) => {
-    const [count, setCount] = useState(1)
-    const [totalPriceOfProduct, setTotalPriceOfProduct] = useState(product.price)
-    let isDisabled = false
-    if (count <= 1) {
-        isDisabled = true
-    }
     const dispatch = useDispatch();
-    const cart = useSelector(state=>state.cart.items)
 
     const handleRemoveItem = (e) => {
         e.preventDefault()
-        dispatch(removeItem({ id: product.id }))
-        setTotalPriceOfProduct(prev=> prev-product.price*count)
-        dispatch(decreaseItemsInCart())
+        dispatch(removeItem(product))
     }
     const handleIncreaseNumOfItem = (e) => {
         e.preventDefault()
-        console.log("added from cartcard", product)
-        setCount(prevValue => prevValue + 1)
-        console.log(cart)
-        // setTotalPriceOfProduct(prev=> prev+product.price*count)
-        dispatch(increaseTotalPrice({price:product.price}))
-        const result = dispatch(addItem({ name: product.name, id: product.id, price: product.price, imageUrl: product.imageUrl, description: product.description, size: product.size, color: product.color}));
-        console.log(result)
-    }
+        dispatch(addItem(product)); 
+      }
 
     const handleDecreaseNumOfItem = (e) => {
         e.preventDefault()
-        setCount(prevValue => prevValue - 1)
-        console.log(cart)
-        dispatch(increaseTotalPrice({price:product.price}))
-        dispatch(removeItem({ id: product.id }))
-        console.log("remove from cartcard")
+        dispatch(removeItem(product))
+        dispatch(removeSingleItem(product))
+      }
 
-    }
-    const handleChange = (e)=>{
-        e.preventDefault()
-        setCount(e.target.value)
-    }
     return (
         <div className="w-full h-64 flex items-center justify-between py-2 ">
 
@@ -66,12 +44,12 @@ const CartCard = (product) => {
                     </div>
                     <div className="quantity h-full w-1/2 flex items-center font-normal text-lg ">
                         <button onClick={handleDecreaseNumOfItem} className='w-8 h-8 bg-[#f5f5f5] hover:bg-[#ced4da] disabled:cursor-not-allowed'
-                            disabled={isDisabled}>-</button>
-                        <input type="number" value={count} onChange={handleChange} className='w-1/2 bg-inherit text-center text-[#fca311] h-8 bg-[#f5f5f5] mx-1' />
+                        >-</button>
+                        <input type="number" value={product.quantity} className='w-1/2 bg-inherit text-center text-[#fca311] h-8 bg-[#f5f5f5] mx-1' />
                         <button onClick={handleIncreaseNumOfItem} className='w-8 h-8 bg-[#f5f5f5] hover:bg-[#ced4da]'>+</button>
                     </div>
                     <div className="total h-full flex flex-grow items-center justify-end font-semibold">
-                        <p>Rs. {product.price*count}</p>
+                        <p>Rs. {product.price*product.quantity}</p>
                     </div>
                 </div>
                 <div className="cancel-btn absolute top-0 right-0">

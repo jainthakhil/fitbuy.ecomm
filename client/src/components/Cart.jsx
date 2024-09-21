@@ -1,17 +1,17 @@
 import React from 'react'
-import ItemCard from './ItemCard'
+import { Link } from 'react-router-dom'
 import CartCard from './CartCard'
 import CartSummary from './CartSummary'
 import { useSelector } from 'react-redux'
-import { products } from '../content/productlist'
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart.items)
-  cart.map((item) => {
-    // console.log(item);
-  })
+  console.log("virtual cart: ",cart);
+  const actualCart = useSelector((state)=>state.cart.actualCart)
+  console.log("actual cart: ",actualCart)
+  
+  
   return (
-
     <div className="cartbox text-[#545454] font-medium p-12">
       <h1 className='text-[2rem] font-bold mb-6'>
         Cart
@@ -39,7 +39,8 @@ const Cart = () => {
         </div>
         <hr className="mb-6 border-t" />
         <div className="cart-items w-full h-full  ">
-        {cart.map((product, index) => (        
+        {cart.length>0 ? ( 
+        cart.map((product, index) => (        
           <div key={product.id}>
             <CartCard
               id={product.id}
@@ -49,25 +50,18 @@ const Cart = () => {
               color={product.color}
               size={product.size}
               description={product.description}
-              totalArticle={1}
+              quantity={product.quantity}
             />
             {index < cart.length - 1 && <hr className="my-4 border-t " />}
           </div> 
-        ))}
-       
-
+        ))) : (<h3 className='font-bold text-[2rem] text-center'>Your cart is empty <Link to='/' className='text-[#FCA311]'>shop now!</Link></h3>)}
         </div>
-
       </form>
+      <hr className="my-4 border-t " />
       <div className="summary w-full flex items-center justify-end">
         <CartSummary />
       </div>
     </div>
-
-
-
-
   )
 }
-
 export default Cart
