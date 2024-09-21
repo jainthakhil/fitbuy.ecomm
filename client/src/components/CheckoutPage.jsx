@@ -9,8 +9,9 @@ const CheckoutPage = () => {
     console.log(cart)
 
     return (
-        <div className='w-full flex items-center justify-around min-h-screen'>
-            <div className="checkout__box w-1/2 h-full flex p-20 ">
+        <div className='w-full min-h-[100vh] flex items-start justify-center'>
+
+            <div className="checkout__box w-1/2 flex p-20 ">
                 <div className=" flex max-w-[24rem] flex-col rounded-lg bg-white border border-slate-200 shadow-sm">
                     <div className="relative m-2.5 items-center flex flex-col justify-center text-white h-32 rounded-md bg-slate-800">
                         <div className="mb-4 text-white">
@@ -132,23 +133,26 @@ const CheckoutPage = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="cart__list w-1/2 h-full p-20 overflow-scroll">
-                <h1 className='text-[1rem] font-thin mb-10'>Your cart summary</h1>
-                {cart.length > 0 ? (
+            
+            <div className="list-box w-1/2  p-20 ">
+            <div className="cart__list w-full ">
+                <h1 className='text-[1rem] font-thin mb-4'>Your cart summary</h1>
+                {
                     cart.map((product) => (
                         <div key={product.id}>
-                            <div class="flex items-center p-4 rounded-lg max-w-md">
+                            <div class="flex items-center p-4 rounded-lg max-w-md text-xs">
                                 <img src={product.imageUrl} alt="Item Image" class="w-16 h-16 object-cover rounded-md" />
                                 <div class="ml-4">
-                                    <h2 class="text-lg font-semibold">{product.name}</h2>
+                                    <h2 class="text-sm font-thin">{product.name}</h2>
                                     <p class="text-gray-500">Rs. {product.price}</p>
                                     <p class="text-gray-500">Qnt: {product.quantity}</p>
                                 </div>
                             </div>
                         </div>
-                    ))) : (<h3 className='font-bold text-[2rem] text-center'>Your cart is empty <Link to='/' className='text-[#FCA311]'>shop now!</Link></h3>)}
+                    ))}
             </div>
+            </div>
+            
         </div>
     )
 }
