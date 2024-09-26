@@ -76,6 +76,39 @@ export const products = [
         category:'Tank',
         featured:'false'
     },
+    {
+        name:'Nylon Tracks',
+        price:' 1599',
+        description:'Nylon Supreme Tracks Light Grey',
+        imageUrl:'//fuaark.com/cdn/shop/products/fuaark-nylon-supreme-track-lightgrey-5.jpg?crop=center&height=1557&v=1691068770&width=1037',
+        size: 'L',
+        color: 'Light Grey',
+        gender: 'Male',
+        category:'Track',
+        featured:'true'
+    },
+    {
+        name:'Hybrid Slim Tracks',
+        price:' 1399',
+        description:'Hybrid Slim Tracks Navy',
+        imageUrl:'//fuaark.com/cdn/shop/files/Fuaark-Hybrid-Slim-Tracks-6.jpg?v=1696048572',
+        size: 'L',
+        color: 'Navy',
+        gender: 'Male',
+        category:'Track',
+        featured:'true'
+    },
+    {
+        name:'Compression Shorts',
+        price:' 1049',
+        description:'2 in 1 Compression Shorts Olive',
+        imageUrl:'//fuaark.com/cdn/shop/files/fuaark-2-in-1-compression-shorts-olive-6.jpg?v=1692426204',
+        size: 'L',
+        color: 'Olive',
+        gender: 'Male',
+        category:'Shorts',
+        featured:'true'
+    },
 
     
 ]

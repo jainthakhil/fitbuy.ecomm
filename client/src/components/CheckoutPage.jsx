@@ -1,5 +1,7 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { setExactProduct } from '../redux/features/exactProductSlice'
 
 const CheckoutPage = () => {
     const cart = useSelector((state) => state.cart.items)
@@ -7,6 +9,14 @@ const CheckoutPage = () => {
         console.log(item.name)
     })
     console.log(cart)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    
+    const handleClick = (product) =>{
+        console.log("Clicked");
+        dispatch(setExactProduct(product))
+        navigate(`/product/${product.id}`);
+      }
 
     return (
         <div className='w-full min-h-[100vh] flex items-start justify-center'>
@@ -140,12 +150,12 @@ const CheckoutPage = () => {
                 {
                     cart.map((product) => (
                         <div key={product.id}>
-                            <div class="flex items-center p-4 rounded-lg max-w-md text-xs">
-                                <img src={product.imageUrl} alt="Item Image" class="w-16 h-16 object-cover rounded-md" />
-                                <div class="ml-4">
-                                    <h2 class="text-sm font-thin">{product.name}</h2>
-                                    <p class="text-gray-500">Rs. {product.price}</p>
-                                    <p class="text-gray-500">Qnt: {product.quantity}</p>
+                            <div className="flex items-center p-4 rounded-lg max-w-md text-xs">
+                                <img src={product.imageUrl} alt="Item Image" className="w-16 h-16 object-cover rounded-md animation transition ease-in-out duration-300  hover:scale-105" onClick={() => handleClick(product)} />
+                                <div className="ml-4">
+                                    <h2 className="text-sm font-thin">{product.name}</h2>
+                                    <p className="text-gray-500">Rs. {product.price}</p>
+                                    <p className="text-gray-500">Qnt: {product.quantity}</p>
                                 </div>
                             </div>
                         </div>

@@ -31,7 +31,7 @@ const SignUp = () => {
           }
     }
     return (
-        <div className='w-full h-full flex items-center justify-center'>
+        <div className='w-full h-full flex items-center justify-center m-10'>
             <div className="relative flex flex-col text-gray-700 bg-transparent shadow-none rounded-xl border border-slate-200">
                 <div className="relative m-2.5 items-center flex justify-center text-white h-24 rounded-md bg-brandColor">
                     <h3 className="text-2xl">

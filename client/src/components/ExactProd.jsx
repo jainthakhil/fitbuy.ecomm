@@ -11,7 +11,8 @@ const ExactProd = () => {
       }
 
     return (
-        <div className=" exact__prod w-full flex items-center justify-center">
+        <div className=" exact__prod w-full flex flex-col items-center justify-center">
+        <h1 className='uppercase font-medium text-2xl mt-8 mb-4 text-gray-600 text-center'>Product Details</h1>
             <div className='w-2/3 gap-6 md:gap-8 grid p-4 md:p-6 lg:p-8 border-none grid-cols-1 md:grid-cols-2  '>
                 <div className="product-img col-span-1">
                     <img src={product.imageUrl} alt="" className='w-full max-w-full h-auto 

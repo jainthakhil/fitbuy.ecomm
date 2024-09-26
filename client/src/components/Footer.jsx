@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -16,46 +17,46 @@ const Footer = () => {
                                 Shop
                             </p>
                             <li>
-                                <a href="#"
+                                <Link to="/men"
                                     className="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
                                     Men
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#"
+                                <Link to="/women"
                                     className="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
                                     Women
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#"
+                                <Link to="/"
                                     className="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
                                     New Arrival
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#"
+                                <Link to="/"
                                     className="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
                                     Best Selling
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                         <ul>
                             <p
                                 className="block mb-3 font-sans text-sm antialiased font-medium leading-normal text-blue-gray-900 opacity-40">
-                                Company
+                                Account
                             </p>
                             <li>
-                                <a href="#"
+                                <Link to="/signin"
                                     className="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
-                                    About us
-                                </a>
+                                    Sign In
+                                </Link>
                             </li>
                             <li>
-                                <a href="#"
+                                <Link to="/signup"
                                     className="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
-                                    Services
-                                </a>
+                                    Sign Up
+                                </Link>
                             </li>
                             
                         </ul>
@@ -65,13 +66,13 @@ const Footer = () => {
                                 Help
                             </p>
                             <li>
-                                <a href="#"
+                                <a href="/"
                                     className="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
                                     Whatsapp Us: +91 1234567890
                                 </a>
                             </li>
                             <li>
-                                <a href="#"
+                                <a          href="mailto:contact@fitbuy.in"
                                     className="block py-1.5 font-sans text-base font-normal leading-relaxed text-gray-700 antialiased transition-colors hover:text-blue-gray-900">
                                     Email Us: contact@fitbuy.in
                                 </a>
