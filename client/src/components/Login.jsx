@@ -23,16 +23,20 @@ const Login = () => {
         console.log(userData);
         try{
             const response = await axiosInstance.post('/signin', userData);
+            
             setSuccess(response.data.message);
             setError(null);
             console.log(response.data.message);
+            alert(response.data.message);
             setUserData({email:'', password:''})
             dispatch(setUserName(response.data.loggedInUserName)) //sending username to the store
             dispatch(setUserEmail(userData.email)) //sending user email to the store
             navigate('/')
         } catch(err){
             setError(err.response?.data?.error );
-            console.log(err.response?.data?.error);
+            console.log(err);
+            alert("Login Failed");
+            navigate('/signin');
             setSuccess(null);
         }
     }

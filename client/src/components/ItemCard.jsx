@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch} from 'react-redux'
 import { setExactProduct } from '../redux/features/exactProductSlice'
 import {addItem, increaseTotalPrice} from '../redux/features/cartSlice'
+import axiosInstance from '../axiosInstance'
 
 const ItemCard = (product) => {
   const navigate = useNavigate()
@@ -12,12 +13,36 @@ const ItemCard = (product) => {
     navigate(`/product/${product.id}`);
   }
 
-  const handleAddToCart = () =>{
+  const handleAddToCart = async () =>{
     console.log('add to cart clicked') 
     dispatch(increaseTotalPrice({price:product.price}))
     dispatch(addItem(product))
-  }
 
+    // try {
+    //   // Sending POST request to add the product to the cart in the backend
+    //   const response = await axiosInstance.post('/cart', {
+    //     productId: product.id,
+    //     name:product.name,
+    //     price:product.price,
+    //     imageUrl:product.imageUrl,
+    //     description:product.description,
+    //     color:product.color,
+    //     size:product.size,
+    //     quantity: 1, // Default quantity set to 1
+    //   });
+
+    //   if (response.status === 200) {
+    //     console.log('Product added to cart:', response.data);
+
+    //     // Dispatch actions to update the Redux store only after backend confirms success
+    //     dispatch(increaseTotalPrice({price:product.price}))
+    //     dispatch(addItem(product))
+    //   }
+    // } catch (error) {
+    //   console.error('Error from client adding item to cart:', error);
+    // }
+   
+  }
   return (
       <div className=" item__card relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-72 my-4 ">
         <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-56 cursor-pointer" onClick={handleClick}>

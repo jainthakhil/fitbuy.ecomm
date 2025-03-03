@@ -8,9 +8,11 @@ import { setExactProduct } from '../redux/features/exactProductSlice'
 const CartCard = (product) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
+
     const handleClick = () =>{
         dispatch(setExactProduct(product))
         navigate(`/product/${product.id}`);
+        console.log(product)
       }
 
     const handleRemoveItem = (e) => {
@@ -28,6 +30,8 @@ const CartCard = (product) => {
         dispatch(removeSingleItem(product))
       }
 
+      
+
     return (
         <div className="w-full h-64 flex items-center justify-between py-2 ">
 
@@ -35,7 +39,7 @@ const CartCard = (product) => {
 
                 <div className="img-detail h-full w-1/2 flex items-center ">
                     <div className="card-img h-full ">
-                        <img src={product.img} alt="" className='h-full object-cover aspect-[2/3] object-top' onClick={handleClick}/>
+                        <img src={product.imageUrl} alt="" className='h-full object-cover aspect-[2/3] object-top' onClick={handleClick}/>
                     </div>
                     <div className="card-detail h-full flex flex-grow flex-col items-start justify-center pl-6">
                         <h3 className='text-lg font-normal'>{product.description}</h3>

@@ -6,7 +6,8 @@ const router = express.Router();
 router.get('/women', async (req, res) => {
     try {
     
-        const data = await Product.find({ gender: 'Female' });
+        // const data = await Product.find({ gender: 'Female' });
+        const data = await Product.find({ gender: { $in: ['Female', 'Unisex'] } });
         res.json(data);
     } catch (error) {
         console.error('Error:', error);

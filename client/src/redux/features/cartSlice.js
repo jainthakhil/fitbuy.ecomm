@@ -25,11 +25,9 @@ const cartSlice = createSlice({
       }
       state.actualCart.push(action.payload)
       const total = state.itemsInCart += 1
-        console.log(total);
       
     },
     removeItem: (state, action) => {
-      console.log("remover reducer used")
       const existingItem = state.items.find(item => 
         item.id === action.payload.id &&
         item.color === action.payload.color &&
@@ -55,6 +53,7 @@ const cartSlice = createSlice({
         const total = state.itemsInCart -= 1
       }
     },
+    
     increaseItemsInCart: (state, action) => {
       state.itemsInCart += 1;
       console.log(state.items.length)
@@ -62,6 +61,7 @@ const cartSlice = createSlice({
     decreaseItemsInCart: (state, action) => {
       state.itemsInCart -= 1;
     },
+
     increaseTotalPrice: (state, action) => {
       state.totalPrice += action.payload.price
     },

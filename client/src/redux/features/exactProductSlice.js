@@ -1,10 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { products } from "../../content/productlist";
-
 const initialState = {
    product:{},
 }
-
 export const exactSlice = createSlice({
     name:'exactProduct',
     initialState,

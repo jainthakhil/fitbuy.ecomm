@@ -62,7 +62,8 @@ const Navbar = () => {
               <ul className="absolute right-0 mt-2 bg-white shadow-md rounded-lg p-2 text-black w-max">
                 <li className="py-1 px-3 hover:bg-gray-100"><Link to="/signin">Sign In</Link></li>
                 <li className="py-1 px-3 hover:bg-gray-100"><Link to="/signup">Sign Up</Link></li>
-                <li className="py-1 px-3 hover:bg-gray-100"><Link to="/logout">Logout</Link></li>
+                 {/* add later */}
+                {/* <li className="py-1 px-3 hover:bg-gray-100"><Link to="/logout">Logout</Link></li> */}
               </ul>
             </details>
           </li>

@@ -44,7 +44,7 @@ const Cart = () => {
           <div key={product.id}>
             <CartCard
               id={product.id}
-              img={product.imageUrl}
+              imageUrl={product.imageUrl}
               name={product.name}
               price={product.price}
               color={product.color}

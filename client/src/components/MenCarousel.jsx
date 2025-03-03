@@ -4,6 +4,7 @@ import axiosInstance from '../axiosInstance'
 
 const MenCarousel = () => {
     const [menData, setMenData] = useState([]);
+    
     useEffect(() => {
 
         const fetchMenProducts = async () => {
@@ -21,7 +22,7 @@ const MenCarousel = () => {
     
 
   return (
-    <div className=' w-full p-12'>
+    <div className=' w-full h-full p-12'>
       <h1 className='uppercase font-medium text-2xl mt-8 mb-4 text-gray-600 text-center'>Men</h1>
       <div className="wrapper flex flex-wrap items-center justify-evenly">
         {menData.map((product) => (
